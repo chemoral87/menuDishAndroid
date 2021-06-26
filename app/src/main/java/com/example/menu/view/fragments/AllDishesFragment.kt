@@ -4,15 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.GridLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.menu.R
 import com.example.menu.application.FavDishApplication
 import com.example.menu.databinding.FragmentAllDishesBinding
 import com.example.menu.view.activities.AddUpdateDishActivity
+import com.example.menu.view.adapter.FavDishAdapter
 import com.example.menu.viewmodel.FavDishViewModel
 import com.example.menu.viewmodel.FavDishViewModelFactory
 
@@ -20,8 +23,10 @@ import com.example.menu.viewmodel.HomeViewModel
 
 class AllDishesFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private val mFavDishViewModel : FavDishViewModel by viewModels{
+    // private lateinit var homeViewModel: HomeViewModel
+    private lateinit var mBinding: FragmentAllDishesBinding
+
+    private val mFavDishViewModel : FavDishViewModel by viewModels {
         FavDishViewModelFactory((requireActivity().application as FavDishApplication).respository)
     }
 
@@ -39,12 +44,28 @@ class AllDishesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mBinding.rvDishesList.layoutManager = GridLayoutManager(requireActivity(), 2)
+        val favDishAdapter = FavDishAdapter(this@AllDishesFragment)
+
+        mBinding.rvDishesList.adapter = favDishAdapter
+
         mFavDishViewModel.allDishesList.observe(viewLifecycleOwner){
             dishes ->
                 dishes.let {
-                    for(item in it){
-                        Log.i("TAG", "${item.id} :: ${item.title}")
+                    if(it.isNotEmpty()){
+                        Log.i("TAG", "NOT EMPTY")
+                        mBinding.rvDishesList.visibility = View.VISIBLE
+                        mBinding.tvNoDishesAddedYet.visibility = View.GONE
+                        favDishAdapter.dishesList(it)
+                    } else {
+                        Log.i("TAG", "EMPTY")
+                        mBinding.rvDishesList.visibility = View.GONE
+                        mBinding.tvNoDishesAddedYet.visibility = View.VISIBLE
                     }
+                   /* for(item in it){
+                        Log.i("TAG", "${item.id} :: ${item.title}")
+                    } */
                 }
         }
     }
@@ -70,17 +91,18 @@ class AllDishesFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+        mBinding = FragmentAllDishesBinding.inflate(inflater, container, false)
+        /*  homeViewModel =
+                 ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        _binding = FragmentAllDishesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+         _binding = FragmentAllDishesBinding.inflate(inflater, container, false)
+         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        // val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+             textView.text = it
+         })*/
+        return mBinding.root
     }
 
     override fun onDestroyView() {
