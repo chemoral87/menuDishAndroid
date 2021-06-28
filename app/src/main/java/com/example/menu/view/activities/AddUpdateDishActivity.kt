@@ -198,7 +198,7 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                         } catch(e: Exception){
                             Log.e("TAG", e.message.toString())
                         }
-                        //  finish()
+                          finish()
                         /*
                         Toast.makeText(
                             this@AddUpdateDishActivity,

@@ -3,14 +3,14 @@
     android:fillAfter="true"
     >
 
-<!--
+
     <translate
         android:duration="800"
         android:fromXDelta="0%p"
         android:fromYDelta="0%p"
         android:interpolator="@android:anim/accelerate_decelerate_interpolator"
         android:toXDelta="0%p"
-        android:toYDelta="49%p" /> -->
+        android:toYDelta="47%p" />
     <alpha
         android:interpolator="@android:anim/accelerate_decelerate_interpolator"
         android:duration="800"
