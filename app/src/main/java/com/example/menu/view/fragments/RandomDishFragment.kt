@@ -12,7 +12,7 @@ import com.example.menu.databinding.FragmentNotificationsBinding
 
 import com.example.menu.viewmodel.NotificationsViewModel
 
-class NotificationsFragment : Fragment() {
+class RandomDishFragment : Fragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
     private var _binding: FragmentNotificationsBinding? = null

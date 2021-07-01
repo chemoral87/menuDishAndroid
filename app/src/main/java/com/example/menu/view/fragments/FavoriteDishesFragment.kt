@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.menu.databinding.FragmentDashboardBinding
 import com.example.menu.viewmodel.DashboardViewModel
 
-class DashboardFragment : Fragment() {
+class FavoriteDishesFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
     private var _binding: FragmentDashboardBinding? = null
