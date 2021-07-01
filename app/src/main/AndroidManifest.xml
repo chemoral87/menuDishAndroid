@@ -19,6 +19,7 @@
             android:configChanges="orientation"
             android:theme="@style/Theme.Menu.NoActionBar"
             android:label="Add Dish"
+            android:windowSoftInputMode="adjustResize"
             ></activity>
         <activity
             android:configChanges="orientation"
