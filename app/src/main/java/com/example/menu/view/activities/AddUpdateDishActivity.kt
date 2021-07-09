@@ -3,11 +3,10 @@ package com.example.menu.view.activities
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import com.example.menu.R
-import com.example.menu.databinding.ActivityAddUpdateDishBinding
+
 import com.example.menu.databinding.DialogCustomImageSelectionBinding
 import com.karumi.dexter.Dexter
 import android.Manifest
@@ -18,7 +17,7 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.DrawFilter
+
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.MediaStore
@@ -36,6 +35,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.menu.application.FavDishApplication
+import com.example.menu.databinding.ActivityAddUpdateDishBinding
 import com.example.menu.databinding.DialogCustomListBinding
 import com.example.menu.model.entities.FavDish
 import com.example.menu.utils.Constants
@@ -67,17 +67,18 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_update_dish)
+
+
         mBinding = ActivityAddUpdateDishBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
         setupActionBar()
 
-        mBinding.ivAddDishImage.setOnClickListener(this)
-        mBinding.etType.setOnClickListener(this)
-        mBinding.etCategory.setOnClickListener(this)
-        mBinding.etCookingTime.setOnClickListener(this)
-        mBinding.btnAddDish.setOnClickListener(this)
+        mBinding.ivAddDishImage.setOnClickListener(this@AddUpdateDishActivity)
+        mBinding.etType.setOnClickListener(this@AddUpdateDishActivity)
+        mBinding.etCategory.setOnClickListener(this@AddUpdateDishActivity)
+        mBinding.etCookingTime.setOnClickListener(this@AddUpdateDishActivity)
+        mBinding.btnAddDish.setOnClickListener(this@AddUpdateDishActivity)
 
     }
 

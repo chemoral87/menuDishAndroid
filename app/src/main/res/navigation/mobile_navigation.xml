@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_all_dishes">
 
     <fragment
         android:id="@+id/navigation_all_dishes"
@@ -29,6 +29,12 @@
     <fragment
         android:id="@+id/navigation_dish_details"
         android:name="com.example.menu.view.fragments.DishDetailsFragment"
-        android:label="fragment_dish_details"
-        tools:layout="@layout/fragment_dish_details" />
+        android:label="@string/title_dish_details"
+        tools:layout="@layout/fragment_dish_details"
+        >
+        <argument
+            android:name="dishDetails"
+            app:argType="com.example.menu.model.entities.FavDish"
+            />
+    </fragment>
 </navigation>
