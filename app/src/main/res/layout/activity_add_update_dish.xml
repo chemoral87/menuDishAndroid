@@ -36,7 +36,7 @@
             <FrameLayout
                 android:id="@+id/fl_select_image"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_height="@dimen/_300sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +47,9 @@
                     android:layout_height="match_parent"
                     android:background="@color/dish_image_background"
                     android:contentDescription="@string/image_contentDescription"
-                    android:scaleType="fitXY" />
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                   />
 
                 <ImageView
                     android:id="@+id/iv_add_dish_image"

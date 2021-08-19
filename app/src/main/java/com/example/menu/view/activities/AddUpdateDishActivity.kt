@@ -316,9 +316,10 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                 data?.let {
                     val thumbmail : Bitmap = data.extras!!.get("data") as Bitmap
                     // mBinding.ivDishImage.setImageBitmap(thubmail)
-                    Glide.with(this).load(thumbmail)
-                        .optionalCenterCrop()
-                        // .centerCrop()
+
+                   Glide.with(this).load(thumbmail)
+                      //  .optionalCenterCrop()
+//                        .centerCrop()
                         .into(mBinding.ivDishImage)
                     mImagePath = saveImageToInternalStorage(thumbmail)
                     mBinding.ivAddDishImage.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_vector_edit))
@@ -386,15 +387,18 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
         private fun saveImageToInternalStorage(bitmap: Bitmap):String{
             val wrapper = ContextWrapper(applicationContext)
             var file = wrapper.getDir(IMAGE_DIRECTORY, Context.MODE_PRIVATE)
+            // Log.i("TAG",file)
             file = File(file, "${UUID.randomUUID()}.jpg")
             try {
                 val stream : OutputStream = FileOutputStream(file)
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream )
+                //bitmap.compress(Bitmap.CompressFormat.PNG, 10, stream )
                 stream.flush()
                 stream.close()
             } catch (e: IOException){
                 e.printStackTrace()
             }
+
             return file.absolutePath
         }
 
@@ -410,7 +414,7 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
     }
 
         companion object{
-            private const val CAMERA = 1
+            private const val CAMERA = 200
             private const val GALLERY = 2
             private const val IMAGE_DIRECTORY = "FavDishImages"
         }
